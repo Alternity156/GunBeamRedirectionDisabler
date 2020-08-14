@@ -1,17 +1,11 @@
-using Harmony;
-using System;
-using System.Reflection;
+﻿using System;
 using UnityEngine;
+using Harmony;
 
 namespace AudicaModding
 {
-    internal static class Hooks
+    class Hooks
     {
-        public static void ApplyHooks(HarmonyInstance instance)
-        {
-            instance.PatchAll(Assembly.GetExecutingAssembly());
-        }
-
         [HarmonyPatch(typeof(Gun), "AdjustAutoaimedPosition", new Type[] { typeof(Target), typeof(Vector3), typeof(int), typeof(bool) })]
         private static class PatchAdjustPosition
         {
@@ -24,5 +18,5 @@ namespace AudicaModding
                 __result = intersection;
             }
         }
-	}
+    }
 }
